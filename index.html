@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Habib Rehman — WordPress & PHP Developer crafting clean, reliable websites and digital experiences.">
     <title>Habib Rehman | WordPress & PHP Developer</title>
     <style>
         :root {
@@ -42,8 +43,7 @@
             background: rgba(23, 24, 23, 0.78);
         }
 
-        .portfolio__topline,
-        .portfolio__footer {
+        .portfolio__topline {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -52,9 +52,6 @@
             font-size: 0.72rem;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-        }
-
-        .portfolio__topline {
             color: var(--muted);
         }
 
@@ -108,16 +105,123 @@
             color: var(--ink);
             font-family: Arial, sans-serif;
             font-size: 0.8rem;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .portfolio__skill:hover {
+            border-color: var(--accent);
+            background: rgba(201, 243, 107, 0.05);
         }
 
         .portfolio__footer {
-            padding-top: 24px;
+            margin-top: clamp(60px, 10vh, 120px);
+            padding-top: 28px;
             border-top: 1px solid var(--line);
             color: var(--muted);
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .portfolio__footer-primary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .portfolio__status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .portfolio__status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+            display: inline-block;
+            animation: pulse-dot 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.35; transform: scale(0.85); }
         }
 
         .portfolio__availability {
             color: var(--accent);
+            font-weight: 600;
+        }
+
+        .portfolio__divider {
+            color: var(--line);
+        }
+
+        .portfolio__location {
+            color: var(--muted);
+        }
+
+        .portfolio__social-nav {
+            display: flex;
+        }
+
+        .portfolio__social {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .portfolio__social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .portfolio__social-link:hover {
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .portfolio__social-link svg {
+            width: 10px;
+            height: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .portfolio__social-link:hover svg {
+            transform: translate(1px, -1px);
+        }
+
+        .portfolio__footer-secondary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(244, 241, 232, 0.08);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(169, 170, 164, 0.65);
         }
 
         @media (max-width: 600px) {
@@ -129,11 +233,31 @@
                 padding: 24px;
             }
 
-            .portfolio__topline,
-            .portfolio__footer {
+            .portfolio__topline {
                 align-items: flex-start;
                 flex-direction: column;
                 gap: 10px;
+            }
+
+            .portfolio__footer-primary {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .portfolio__status {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .portfolio__social {
+                gap: 16px;
+            }
+
+            .portfolio__footer-secondary {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
 
             .portfolio__content {
@@ -167,18 +291,44 @@
                 </div>
             </div>
 
-            <div class="portfolio__footer">
-                <span class="portfolio__availability">Available for new projects</span>
-                <span>Based in Pakistan</span>
-            </div>
-        </section>
-        <section>
-            <h3>Social Contact</h3>
-            <ul>
-                <li>Facebook <a href="https://facebook.com">Visit Profile</a></li>
-                <li>Twitter <a href="https://twitter.com">Visit Profile</a></li>
-                <li>LinkedIn <a href="https://linkedin.com">Visit Profile</a></li>
-            </ul>
+            <footer class="portfolio__footer" id="footer">
+                <div class="portfolio__footer-primary">
+                    <div class="portfolio__status">
+                        <span class="portfolio__status-dot" aria-hidden="true"></span>
+                        <span class="portfolio__availability">Available for new projects</span>
+                        <span class="portfolio__divider" aria-hidden="true">·</span>
+                        <span class="portfolio__location">Based in Pakistan</span>
+                    </div>
+
+                    <nav class="portfolio__social-nav" aria-label="Social Contact">
+                        <ul class="portfolio__social">
+                            <li>
+                                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="portfolio__social-link" id="link-facebook">
+                                    <span>Facebook</span>
+                                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5L8.5 3.5M8.5 3.5H4.5M8.5 3.5V7.5"/></svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="portfolio__social-link" id="link-twitter">
+                                    <span>Twitter</span>
+                                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5L8.5 3.5M8.5 3.5H4.5M8.5 3.5V7.5"/></svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="portfolio__social-link" id="link-linkedin">
+                                    <span>LinkedIn</span>
+                                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5L8.5 3.5M8.5 3.5H4.5M8.5 3.5V7.5"/></svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="portfolio__footer-secondary">
+                    <span class="portfolio__copyright">© 2026 Habib Rehman. All rights reserved.</span>
+                    <span class="portfolio__tagline">WordPress & PHP Developer</span>
+                </div>
+            </footer>
         </section>
     </main>
 </body>
